@@ -1,11 +1,14 @@
-var GITHUB_USER = "DominicTremblay";
-var GITHUB_TOKEN = "2c53aa22f54d3b74ece0dfab62afc3952dae46eb";
-
 var request = require('request');
 var fs = require('fs');
+require('dotenv').config();
+
+var GITHUB_USER = "DominicTremblay";
+
+
+
 
 function getRepoContributors(repoOwner, repoName, cb) {
-  var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
+  var requestURL = 'https://'+ GITHUB_USER + ':' + process.env.GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
   var options = {
         url: requestURL,
         headers: {
@@ -63,6 +66,5 @@ function getAvatarURLS() {
 });
   }
 }
-
 
 getAvatarURLS();

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DominicTremblay/github-avatar-downloader#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "request": "^2.79.0"
   }
 }
