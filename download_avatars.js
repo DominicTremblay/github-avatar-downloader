@@ -4,11 +4,22 @@ require('dotenv').config();
 
 var GITHUB_USER = "DominicTremblay";
 
+function checkValidURL(url) {
 
+  if (!GITHUB_USER)
+    throw new Error("No github user provided");
+
+  if(!process.env.GITHUB_TOKEN)
+    throw new Error("No access token provided");
+
+}
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
   var requestURL = 'https://'+ GITHUB_USER + ':' + process.env.GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
+
+  checkValidURL(requestURL);
+
   var options = {
         url: requestURL,
         headers: {
@@ -23,7 +34,11 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
     else {
       console.log(response.statusCode);
-      cb(null, JSON.parse(body));
+      if (response.statusCode === 200) {
+        cb(null, JSON.parse(body));
+      }
+      else
+        console.log("cannot access the ressource with the specified URL.")
     }
   });
 }
@@ -39,6 +54,9 @@ function downloadImageByURL(url, filePath) {
     console.log('HTTP Content-Type: \'' + response.headers['content-type'] + '\'');
   })
   .pipe(fs.createWriteStream(filePath))
+  .on('error', function (err){
+    console.log(err);
+  })
   .on('finish', function(){
     console.log("Download of ", filePath, 'complete');
   });
