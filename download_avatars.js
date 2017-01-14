@@ -31,17 +31,18 @@ function downloadImageByURL(url, filePath) {
     throw err;
   })
   .on('response', function(response){
-    console.log('Downloading image...');
+    console.log('Downloading', filePath);
     console.log('HTTP Status', response.statusCode, response.statusMessage);
     console.log('HTTP Content-Type: \'' + response.headers['content-type'] + '\'');
   })
   .pipe(fs.createWriteStream(filePath))
   .on('finish', function(){
-    console.log("Download complete");
+    console.log("Download of ", filePath, 'complete');
   });
 }
 
-function getRepoInfo() {
+function getAvatarURLS() {
+
   var args = process.argv.slice(2);
   if(args.length < 2) {
     console.log('Please provide a repo owner and repo as arguments from the command line');
@@ -64,4 +65,4 @@ function getRepoInfo() {
 }
 
 
-getRepoInfo();
+getAvatarURLS();
