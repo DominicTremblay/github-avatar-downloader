@@ -41,10 +41,13 @@ function downloadImageByURL(url, filePath) {
   });
 }
 
-// downloadImageByURL('https://avatars2.githubusercontent.com/u/2741?v=3&s=466', 'avatars/kvirani.jpg');
-
-
-getRepoContributors("jquery", "jquery", function(err, result) {
+function getRepoInfo() {
+  var args = process.argv.slice(2);
+  if(args.length < 2) {
+    console.log('Please provide a repo owner and repo as arguments from the command line');
+  }
+  else {
+    getRepoContributors(args[0], args[1], function(err, result) {
   if (err) {
     console.log("Errors:", err);
   }
@@ -57,4 +60,8 @@ getRepoContributors("jquery", "jquery", function(err, result) {
   }
 
 });
+  }
+}
 
+
+getRepoInfo();
