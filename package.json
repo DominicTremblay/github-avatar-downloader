@@ -1,0 +1,22 @@
+{
+  "name": "github-avatar-downloader",
+  "version": "1.0.0",
+  "description": "LHL Exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DominicTremblay/github-avatar-downloader.git"
+  },
+  "author": "Dominic Tremblay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DominicTremblay/github-avatar-downloader/issues"
+  },
+  "homepage": "https://github.com/DominicTremblay/github-avatar-downloader#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}
